@@ -1,0 +1,7 @@
+.categories-page {
+    .image-category {
+        &:after {
+            display: none !important;
+        }
+    }
+}

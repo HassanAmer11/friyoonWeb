@@ -1,0 +1,93 @@
+.p-toast .p-toast-message .p-toast-message-content .p-toast-message-text {
+  margin: 0 0 0 0 !important;
+  margin-inline-start: 1rem !important;
+}
+
+tbody, td, tfoot, th, thead, tr {
+  text-align: start;
+}
+
+.p-icon-wrapper {
+  transform: scaleX(-1);
+}
+
+.p-paginator .p-dropdown .p-dropdown-label {
+  padding-right: unset;
+  padding-inline-end: 0;
+  padding-inline-start: 0.75rem;
+}
+
+.p-dropdown-items {
+  padding: 0;
+  text-align: center;
+}
+
+.active>.page-link, .page-link.active {
+  z-index: 3;
+  color: #333;
+  background-color: $warning;
+  border-color: $warning;
+}
+.input-date-primeng {
+  button, input, optgroup, select, textarea {
+    padding: .375rem .75rem;
+  }
+
+}
+.p-calendar-w-btn .p-inputtext {
+
+  border-radius: 6px;
+  border-top-right-radius: unset;
+  border-bottom-right-radius: unset;
+  border-start-start-radius: 6px;
+  border-end-start-radius: 6px;
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+.input-date-primeng button, .input-date-primeng input, .input-date-primeng optgroup, .input-date-primeng select, .input-date-primeng textarea {
+  border-start-end-radius: 6px;
+  border-end-end-radius: 6px;
+}
+
+.p-button {
+  color: #333;
+  background: #FED700;
+  border: 1px solid #FED700;
+
+}
+.p-calendar {
+  width: 100%;
+}
+.ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg {
+  position: absolute;
+  margin-top: -9px;
+  right: unset;
+  inset-inline-end: 0;
+  top: 50%;
+  width: 18px;
+}
+p-editor .ql-editor {
+  direction: rtl;
+  text-align: start;
+}
+
+.ql-editor li {
+  list-style-type: none;
+  padding-left: unset;
+  padding-inline-start: 1.5em;
+  position: relative;
+}
+
+.ql-editor li > .ql-ui:before {
+  margin-left: unset;
+  // margin-inline-start: -1.5em;
+  margin-right: unset;
+  // margin-inline-end: .3em;
+  margin-inline-start: -1.5em;
+  text-align: start;
+
+}
+.ql-color .ql-picker-options .ql-picker-item , .ql-background  .ql-picker-options .ql-picker-item{
+  width: 16px !important;
+  height: 16px !important;
+}

@@ -1,0 +1,44 @@
+<nav class="navbar fixed-top navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      <img src="../../../../assets/images/longXl-Logo.png" alt="" height="50">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link "  routerLink="/" routerLinkActive="active">الرئيسية</a>
+        </li>
+       <!--  <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active">من نحن </a>
+        </li> -->
+        <!-- <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active">عروض اليوم</a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link"  (click)="scrollToFooter()"> تواصل معنا</a>
+        </li>
+        <!-- <li class="nav-item" >
+          <a class="nav-link text-body-tertiary" >
+            <i class="fa-regular fa-user fs-4"></i>
+          </a>
+        </li> -->
+        <li class="nav-item dropdown" *ngIf="isLogin">
+          <a class="nav-link text-body-tertiary rounded-circle " title="User Name" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="./assets/images/man.png" alt="" class="rounded-circle border border-warning border-2 object-fit-cover" width="30" height="30">
+          </a>
+          <ul class="dropdown-menu z-3">
+            <!-- <li><a class="dropdown-item" ><i class="fa-solid fa-chart-column me-2"></i>  لوحة المعلومات</a></li> -->
+            <li><a class="dropdown-item" routerLink="products-management"><i class="fa-solid fa-box me-2"></i> عرض المنتجات</a></li>
+            <li><a class="dropdown-item" routerLink="./products-management/order"><i class="fa-solid fa-dolly me-2"></i> عرض الطلبات</a></li>
+            <li><a class="dropdown-item" (click)="logOut()"><i class="fa-solid fa-right-from-bracket me-2"></i> تسجيل خروج </a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>

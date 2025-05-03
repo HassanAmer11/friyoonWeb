@@ -1,0 +1,90 @@
+<section class="category-page governorates-page py-5" *ngIf="orderDetails">
+  <div class="container">
+    <div class="title d-flex justify-content-between pb-2 border-bottom mb-4">
+      <h2 class="fw-bold mb-0">الطلب رقم {{orderDetails.id}}
+        <small *ngIf="orderDetails.orderStatus == 2" class="badge fs-6 ms-3 d-inline-flex px-3 py-1 fw-semibold text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-2 me-2">قيد الانتظار</small>
+        <small *ngIf="orderDetails.orderStatus == 1" class="badge fs-6 ms-3 d-inline-flex px-3 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2 me-2">تم التجهيز</small>
+      </h2>
+      <button class="btn btn-outline-success px-4 text-dark ms-auto" *ngIf="orderDetails.orderStatus != 1" (click)="changeStatus()">
+        <i class="fa-solid fa-floppy-disk me-1"></i>
+        تم التجهيز
+      </button>
+      <button class="btn btn-outline-warning px-4 text-dark ms-2" (click)="printPage()" [class.ms-auto]="orderDetails.orderStatus == 1">
+        <i class="fa-solid fa-print"></i>
+        طباعة
+      </button>
+      <a routerLink="../../order" class="btn btn-outline-secondary px-4 text-dark ms-2"> رجوع <i class="fa-solid fa-arrow-left ms-1"></i></a>
+    </div>
+    <div class="content-print">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">اسم العميل</label>
+            <div class="form-control bg-light">{{orderDetails.clientName}}</div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">اسم المنتج</label>
+            <div class="form-control bg-light">{{orderDetails.productName}}</div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">رقم التليفون الشخصي</label>
+            <div class="form-control bg-light">{{orderDetails.phone}}</div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">رقم التواصل على الواتساب</label>
+            <div class="form-control bg-light">{{orderDetails.whatsApp}}</div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">المحافظة</label>
+            <div class="form-control bg-light">{{orderDetails.governorateName}}</div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">سعر التوصيل</label>
+            <div class="form-control bg-light">{{orderDetails.totalOrderPrice - orderDetails.productPrice | number : "1.0-0"}} <span>جنيه</span></div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">سعر المنتج</label>
+            <div class="form-control bg-light">{{orderDetails.productPrice | number : "1.0-0"}} <span>جنيه</span></div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">سعر المنتج بعد التوصيل</label>
+            <div class="form-control bg-light">{{orderDetails.totalOrderPrice | number : "1.0-0"}} <span>جنيه</span></div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">العنوان</label>
+            <div class="form-control bg-light">{{orderDetails.address}}</div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">تفاصيل الطلب</label>
+            <div class="form-control bg-light">{{orderDetails.notes}}</div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">وقت الطلب</label>
+            <div class="form-control bg-light">{{orderDetails.created | date: 'dd/MM/yyyy'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<p-toast></p-toast>

@@ -1,0 +1,82 @@
+<section class="view-products-page  py-5">
+  <div class="container">
+    <div class="title d-flex justify-content-between pb-2 border-bottom mb-4">
+      <h2 class="fw-bold  mb-0">الخدمات</h2>
+      <a class="btn btn-outline-warning px-4 text-dark ms-auto" routerLink="../add-products">
+        <span>إضافة</span>
+      </a>
+      <a routerLink="../products-management" class="btn btn-outline-secondary px-4 text-dark ms-2"> رجوع <i class="fa-solid fa-arrow-left ms-1"></i></a>
+
+    </div>
+
+    <div class="row g-3">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6 mx-auto">
+        <div class="input-group mb-3">
+          <input type="search" class="form-control" placeholder="ابحث عن خدمة..." (input)="applyFilter($event)">
+          <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-magnifying-glass"></i></span>
+        </div>
+      </div>
+      <div class="col-lg-3"></div>
+      <div class="col-lg-12">
+<p-table [value]="filteredProducts || productsList" [paginator]="true" [rows]="PageSize"
+  [rowsPerPageOptions]="[5, 10, 20]"
+          (onLazyLoad)="onPageChange($event)" [loading]="loading" [showCurrentPageReport]="true" [totalRecords]="totalRecords" [rowHover]="true"
+          responsiveLayout="scroll" [lazy]="true" currentPageReportTemplate="">
+
+          <ng-template pTemplate="header">
+            <tr>
+              <th>الاسم</th>
+              <th>صورة</th>
+              <th>الفئة</th>
+              <th>المنطقة</th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product>
+            <tr>
+              <td>{{product.nameAr | textSlice :3}}</td>
+              <td>
+                <img [src]="this.backendurl + product.images[0]?.imagePath" class="img-thumbnail shadow-4"
+                  [alt]="product.title" width="100" />
+                </td>
+              <td>{{product?.category!.nameAr}}</td>
+              <td>{{product.videoUrl}}</td>
+              <td>
+                <button class="btn btn-sm btn-primary mx-2" [routerLink]="['../update-products', product.id]"><i
+                    class="fa-regular fa-pen-to-square"></i></button>
+                <button class="btn btn-sm btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="orderDelete(product.id)"><i
+                    class="fa-solid fa-trash-can"></i></button>
+              </td>
+            </tr>
+          </ng-template>
+
+        </p-table>
+
+      </div>
+    </div>
+  </div>
+</section>
+<p-toast ></p-toast>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"> حذف خدمة</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h5>
+        هل تريد حذف هذه الخدمة؟
+      </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">إغلاق</button>
+        <button type="button" class="btn btn-danger" (click)="deleteProduct()" data-bs-dismiss="modal">نعم</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,176 @@
+<section class="product-details py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="image">
+          <!-- <img [src]="productDetails?.images![0]" alt="" class="w-100 object-fit-contain"> -->
+
+          <div
+            id="carouselExampleAutoplaying"
+            class="carousel slide mb-5"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div
+                class="carousel-item"
+                *ngFor="let image of productDetails?.images; let i = index"
+                [ngClass]="{ active: i == 0 }"
+              >
+                <img
+                  [src]="backImageUrl + image.imagePath"
+                  class="d-block w-100 object-fit-contain"
+                  height="350"
+                />
+              </div>
+              <!-- <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+              </div> -->
+            </div>
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselExampleAutoplaying"
+                *ngFor="let image of productDetails?.images; let i = index"
+                [attr.data-bs-slide-to]="i"
+                [ngClass]="{ active: i == 0 }"
+                [attr.aria-current]="i == 0 ? true : false"
+                [attr.aria-label]="i + 1"
+              >
+                <img [src]="backImageUrl + image.imagePath" class="d-block w-100" />
+              </button>
+              <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="content">
+          <!-- <small class=" text-danger">{{productDetails?.category?.name}}</small> -->
+          <h1 class="fw-bold mb-0">{{ productDetails?.nameAr }}</h1>
+          <!-- <div class="rating mb-3">
+            <ng-container>
+              <i *ngFor="let star of [1, 2, 3, 4, 5]" class="fa-regular fa-star text-warning " [ngClass]="{
+                'fa-solid ': star <= productDetails?.ratingsAverage!
+              }"></i>
+            </ng-container>
+            <span class="ms-2">{{productDetails?.ratingsAverage}}</span>
+              <span class="ms-2 text-success">({{productDetails?.ratingsQuantity}} reviews)</span>
+          </div> -->
+          <div class="price">
+            <span class="h3"
+              >بسعر
+              <span class="text-danger">{{
+                productDetails?.price | number : "1.0-0"
+              }}</span>
+              جنية بدلاً من
+              <span class="text-danger"
+                ><del>{{
+                  productDetails?.oldPrice | number : "1.0-0"
+                }}</del></span
+              >
+              جنية</span
+            >
+          </div>
+          <div class="description py-3">
+            <p>{{ productDetails?.descAr }}</p>
+          </div>
+          <div class="quantity mb-3 border-top pt-3"></div>
+          <div class="action border-bottom pb-3 mb-3">
+            <a
+              [routerLink]="['/shipping-details', productDetails?.id]"
+              class="btn btn-lg btn-warning me-2 px-4 w-100 fw-bold h5"
+              ><i class="fa-solid fa-cart-arrow-down me-1"></i> إشترى الان</a
+            >
+          </div>
+          <!-- <p>
+                     <span class="w-25 d-inline-block"></span>
+            <strong>{{ productDetails?.category?.nameAr }}</strong>
+          </p> -->
+          <div class="description py-3">
+            <p>{{ productDetails?.detailAr }}</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-info-shipping></app-info-shipping>
+  <section class="more details py-5">
+    <h2
+      class="display-5 text-warning fw-bold text-center d-table border-bottom border-2 mx-auto pb-2 mb-5 border-warning px-3"
+    >
+      مميزات المنتج
+    </h2>
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-4">
+          <div class="image border rounded-3">
+            <img
+              [src]="backImageUrl + productDetails?.images?.[0]?.imagePath"
+              alt=""
+              class="w-100 object-fit-contain"
+              height="300"
+            />
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div [innerHTML]="productDetails?.detailAr"></div>
+         <!--  <p>
+            {{ productDetails?.detailAr }}
+          </p> -->
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-testimonial></app-testimonial>
+  <app-more-products></app-more-products>
+</section>
+
+<div
+  class="footer-card p-3 px-5 position-fixed bottom-0 w-100 shadow-lg z-3 bg-white"
+>
+  <div class="conatainer-fluid">
+    <div class="row g-3">
+      <div class="col-lg-6">
+        <a
+          [routerLink]="['/shipping-details', productDetails?.id]"
+          class="btn btn-lg bg-warning bg-gradient px-4 w-100 fw-bold h5 fa-beat-fade mb-0"
+          style="--fa-animation-duration: 3s; --fa-beat-scale: 1.07"
+          ><i class="fa-solid fa-cart-arrow-down me-1"></i> إشترى الان</a
+        >
+      </div>
+      <div class="col-lg-6">
+        <div
+          class="text-offier rounded-pill bg-danger text-white d-flex flex-wrap text-center justify-content-center mx-4 p-2 px-4 justify-content-between align-items-center"
+        >
+          <div class="icon fw-bold text-center mx-auto">
+            <i class="fa-solid fa-fire fa-bounce me-2"></i>ينتهي العرض في
+          </div>
+          <div class="time-card d-flex align-items-center">
+            <div class="d-flex align-items-center me-2">
+              <span class="time-number fw-bold fs-4 me-1">{{ seconds }}</span>
+              <span class="time-unit fw-bold">ثانية</span>
+            </div>
+            <div class="d-flex align-items-center me-2">
+              <span class="time-number fw-bold fs-4 me-1">{{ minutes }}</span>
+              <span class="time-unit fw-bold">دقيقة</span>
+            </div>
+            <div class="d-flex align-items-center me-2">
+              <span class="time-number fw-bold fs-4 me-1">8</span>
+              <span class="time-unit fw-bold">ساعه</span>
+            </div>
+            <div class="d-flex align-items-center me-2">
+              <span class="time-number fw-bold fs-4 me-1">0</span>
+              <span class="time-unit fw-bold">يوم</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

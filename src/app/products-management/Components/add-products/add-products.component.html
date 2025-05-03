@@ -1,0 +1,165 @@
+<section class="add-products-page py-5">
+  <div class="container">
+    <div class="title d-flex justify-content-between pb-2 border-bottom mb-4">
+      <h2 class="fw-bold  mb-0">إضافة خدمة</h2>
+      <button class="btn btn-outline-warning px-4 text-dark ms-auto" (click)="addProduct()">
+        <span>حفظ</span>
+      </button>
+      <a routerLink="../view-products" class="btn btn-outline-secondary px-4 text-dark ms-2"> رجوع <i class="fa-solid fa-arrow-left ms-1"></i></a>
+    </div>
+    </div>
+      <form class="form " (ngSubmit)="addProduct()" [formGroup]="formProduct">
+        <div class="container add-item  mb-3 ">
+          <div class="row g-3">
+            <div class="col-lg-12">
+              <div class="">
+                <label for="nameAr" class="form-label">اسم الخدمة</label>
+                <input type="text" class="form-control" formControlName="nameAr" id="nameAr" placeholder="اسم الخدمة">
+
+              </div>
+            </div>
+            <!-- <div class="col-lg-6">
+              <div class="">
+                <label for="nameEn" class="form-label">الاسم الانجليزى</label>
+                <input type="text" class="form-control" id="nameEn" formControlName="nameEn" placeholder="الاسم الانجليزى">
+
+              </div>
+
+            </div> -->
+
+
+
+            <div class="col-lg-6">
+              <div class="">
+                <label for="categoryId" class="form-label">الفئة</label>
+                <select class="form-select" id="categoryId" formControlName="categoryId">
+                  <option value="" selected>اختر الفئة</option>
+                  <option *ngFor="let category of categories" [value]="category.id">{{category.nameAr}}</option>
+                </select>
+
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="">
+                <label for="LocationIds" class="form-label"> المناطق</label>
+                <p-multiSelect [options]="governorates" class="p-multiselect" optionValue="id" optionLabel="nameAr"
+                  class="p-multiselect-items" styleClass="w-100" formControlName="LocationIds" display="chip" [showClear]="true"
+                  placeholder="مناطق الخدمة" />
+              </div>
+            </div>
+            <div class="col-lg-12" style="display: none;">
+              <div class="d-flex justify-content-evenly">
+
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label" for="showHome"> نشر الخدمة و عرضه </label>
+                  <input type="checkbox" formControlName="showHome" class="form-check-input" id="showHome">
+                </div>
+              </div>
+              </div>
+            <div class="col-lg-12">
+              <div class="">
+                <label for="descAr" class="form-label"> تفاصيل الخدمة </label>
+                <textarea name="descAr" formControlName="descAr" class="form-control" id="descAr" rows="3"></textarea>
+
+
+              </div>
+            </div>
+            
+            <!-- <div class="col-lg-12">
+              <div class="">
+                <label for="descEn" class="form-label">تفاصيل الخدمة بالانجليزى</label>
+                <textarea name="descEn" formControlName="descEn" class="form-control" id="descEn" rows="3"></textarea>
+              </div>
+            </div> -->
+            <div class="col-lg-12">
+              <div class="">
+                <label for="detailAr" class="form-label">مميزات الخدمة </label>
+                <textarea name="detailAr" formControlName="detailAr" class="form-control" id="detailAr" rows="3"></textarea>
+                <!-- <p-editor [(ngModel)]="text"  [dir]="'rtl'" formControlName="detailAr"  [style]="{ height: '320px', direction:'rtl' }" >
+
+                </p-editor> -->
+
+
+              </div>
+            </div>
+            <!-- <div class="col-lg-12">
+              <div class="">
+                <label for="detailEn" class="form-label">مميزات الخدمة بالانجليزى</label>
+                <textarea name="detailEn" formControlName="detailEn" class="form-control" id="detailEn" rows="3"></textarea>
+
+
+              </div>
+            </div> -->
+
+            <div class="col-lg-12">
+              <div class="">
+                <label for="Fees" class="form-label"> صورة الخدمة</label>
+                <input
+                type="file"
+                id="images"
+                (change)="onFileChange($event)"
+                accept="image/*"
+                multiple
+                class="form-control"
+              />          <!-- <div class="text-danger" *ngIf="formProduct.get('imageForm')?.invalid && formProduct.get('imageForm')?.touched">
+                   <div *ngIf="formProduct.get('imageForm')?.getError('required')">هذا الحق اجبارى</div> </div> -->
+              </div>
+            </div>
+            <div class="categories-page py-5">
+
+              <div class="container">
+                <h3 class="fw-bold mb-5">صور الخدمة</h3>
+
+                <owl-carousel-o [options]="customOptions">
+                  <ng-container *ngFor="let slide of  images">
+                    <ng-template carouselSlide>
+                      <a class="text-center">
+                        <div class="image image-product">
+                          <img [src]="slide.previewUrl" [alt]="slide.id" class="w-100 h-100 object-fit-contain">
+                          <button class="delete-btn" type="button" (click)="removeImage(slide.id); $event.stopPropagation();">
+                            <i class="fa-solid fa-trash"></i>
+                          </button>
+                        </div>
+                      </a>
+                    </ng-template>
+                  </ng-container>
+                </owl-carousel-o>
+              </div>
+                            </div>
+            <div class="col-lg-12 ">
+              <div class="d-flex mt-4" style="gap: 10px;">
+                <!--  <img [src]="'../../../../assets/images/'+ image" alt="" class=" rounded-3 object-fit-contain w-100 h-100" >
+                  <a class="close-image position-absolute top-0 end-0 m-2 text-danger" (click)="removeImage(image)">
+                    <i class="fa-solid fa-trash-can"></i>
+                    </a>-->
+
+              </div>
+
+            </div>
+
+            <!-- <div class="col-lg-12">
+              <div class="">
+                <label for="Fees" class="form-label"> صورة تقييمات الخدمة</label>
+                <input type="file" class="form-control text-start" id="Fees" formControlName="imageForm" (change)="changeFile($event)" >
+                <div class="text-danger" *ngIf="formProduct.get('imageForm')?.invalid && formProduct.get('imageForm')?.touched">
+                   <div *ngIf="formProduct.get('imageForm')?.getError('required')">هذا الحق اجبارى</div> </div>
+              </div>
+            </div>
+            <div class="col-lg-12 ">
+              <div class="d-flex mt-4" style="gap: 10px;">
+                <div class="card-image flex-lg-grow-1 position-relative" *ngFor="let image of testimonialImage">
+                  <img [src]="'../../../../assets/images/testimonial/'+ image" alt="" class=" rounded-3 object-fit-contain w-100 h-100" >
+                  <a class="close-image position-absolute top-0 end-0 m-2 text-danger" (click)="removeImage(image)">
+                    <i class="fa-solid fa-trash-can"></i>
+                    </a>
+                </div>
+
+              </div>
+
+            </div> -->
+          </div>
+          </div>
+      </form>
+
+</section>
+<p-toast ></p-toast>

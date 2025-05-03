@@ -1,0 +1,21 @@
+<section class="categories-page py-5">
+  <div class="container">
+    <h3 class="fw-bold mb-5">الأقسام</h3>
+    <owl-carousel-o [options]="customOptions">
+
+      <ng-container *ngFor="let slide of categories">
+        <ng-template carouselSlide >
+          <a class="text-center" (click)="selectcategory(slide.id)">
+            <div class="image image-category">
+              <img [src]="backendurl+slide.imagePath" [alt]="slide.nameAr" [title]="slide.nameAr" class="  w-100 h-100 object-fit-contain">
+           
+              <!-- <img [src]="slide.imagePath" [alt]="slide.name" [title]="slide.name" class="rounded-4 w-100 h-100 object-fit-cover"> -->
+            </div>
+          <h5 class="text-center fw-bold text-dark mt-3">{{slide.nameAr}}</h5>
+        </a>
+        </ng-template>
+      </ng-container>
+
+    </owl-carousel-o>
+  </div>
+</section>

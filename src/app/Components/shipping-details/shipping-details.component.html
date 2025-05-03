@@ -1,0 +1,115 @@
+<section class="shipping-details py-3 pb-5">
+  <div class="container">
+    <div class="row g-3">
+      <div class="col-lg-6 border-end">
+        <div class="image mb-3">
+          <img [src]=" backImageUrl + productDetails!.images[0].imagePath" alt="productDetails.title" class="w-100  object-fit-contain" height="200">
+        </div>
+        <h4 class="text-center">{{productDetails?.nameAr}}</h4>
+        <div class="price text-center ">
+          <span class="h3">بسعر <span class="text-danger">{{ productDetails?.price| number:'1.0-0'}}</span>  جنية    بدلاً من <span class="text-danger"><del>{{ productDetails?.oldPrice| number:'1.0-0' }}</del></span> جنية</span>
+        </div>
+        <div class="text-center h5">
+          <span>سعر التوصيل : </span>
+
+          <ng-container *ngIf="!selectGovernorates; else select">
+            <span >برجاء اختيار المحافظة</span>
+
+          </ng-container>
+          <ng-template #select>
+            <ng-container *ngIf="selectGovernorates.isFreeDelivery; else elseTemplate">
+              <span>0 <span>جنية</span></span>
+
+            </ng-container>
+            <ng-template #elseTemplate>
+              <span>{{selectGovernorates?.deliverdFees}} <span>جنية</span></span>
+
+            </ng-template>
+
+
+          </ng-template>
+
+
+          <div class="text-center h3">
+            <span>الاجمالى : </span>
+            <ng-container *ngIf="selectGovernorates?.isFreeDelivery; else elseTemplatePrice">
+              <span class="text-danger">{{ productDetails?.price  | number:'1.0-0'}}</span> جنية
+
+            </ng-container>
+            <ng-template #elseTemplatePrice>
+              <span class="text-danger">{{ productDetails?.price + selectGovernorates?.deliverdFees | number:'1.0-0'}}</span> جنية
+
+            </ng-template>
+
+            <!-- <ng-container *ngIf="selectGovernorates.isFreeDelivery; else elseTemplatePrice">
+              <span class="text-danger">{{ productDetails?.price  | number:'1.0-0'}}</span> جنية
+
+            </ng-container>
+            <ng-template #elseTemplatePrice>
+              <span class="text-danger">{{ productDetails?.price + selectGovernorates?.deliverdFees | number:'1.0-0'}}</span> جنية
+
+            </ng-template> -->
+          </div>
+
+        </div>
+        <div class="border-bottom border-2 mb-4 pb-3"></div>
+        <h3 class="text-center fw-bold"> 💡 ضمان رضاك التام:</h3>
+        <p class="fw-bold text-center">✔️ حضرتك مش بتستلم إلا بعد ما تعاين المنتج بنفسك ☺️.</p>
+        <p class="fw-bold text-center">✔️ لو المنتج معجبكش، ببساطة متستلموش بدون دفع اي مصاريف ❤️.
+        </p>
+        <p class="fw-bold text-center">📌 كواليتي عالية جداً وسعر استثنائي مش هتلاقيه عند أي حد!
+
+        </p>
+        <p class="fw-bold text-center">🛒 اطلبيها الآن وعيشي تجربة مميزة تجمع بين الراحة والعملية!
+
+        </p>
+        <h4 class="fw-bold text-center">الشحن مجاني لجميع المحافظات لفترة محدودة 🚛👌
+        </h4>
+      </div>
+      <div class="col-lg-6">
+        <h4 class="  fw-bold text-center d-table border-bottom border-2 mx-auto pb-2 mb-5  px-3"> يرجى ادخال معلوماتك لإكمال الطلب
+
+        </h4>
+        <form (ngSubmit)="shippingFormSubmit()" [formGroup]="shippingDetails"  class="px-5">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="clientName" id="floatingInput" placeholder="">
+            <label for="floatingInput" class="fw-bold"> الاسم بالكامل
+            </label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="phone" id="floatingInput" placeholder="">
+            <label for="floatingInput" class="fw-bold">  رقم الهاتف (اساسي)
+            </label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" formControlName="whatsApp" id="floatingInput" placeholder="">
+            <label for="floatingInput" class="fw-bold">    رقم واتساب (لتاكيد الاوردر) او رقم هاتف بديل
+            </label>
+          </div>
+          <div class="form-floating mb-3">
+            <select class="form-select" id="floatingSelect" formControlName="governorateId" (change)="optionGovernorates($event)" aria-label="Floating label select example">
+              <option selected>إختار المحافظة   </option>
+
+              <option *ngFor="let gov of governorates" [value]="gov.id">{{ gov.nameAr }}</option>
+
+            </select>
+                        <label for="floatingInput" class="fw-bold">    المحافظة
+            </label>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea class="form-control"  placeholder="" formControlName="address" id="floatingTextarea2" style="height: 100px"></textarea>
+            <label for="floatingTextarea2">العنوان بالتفصيل
+            </label>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea class="form-control" placeholder="" formControlName="notes" id="floatingTextarea2" style="height: 100px"></textarea>
+            <label for="floatingTextarea2"> ملاحظات
+            </label>
+          </div>
+          <button class="w-100 btn btn-lg fw-bold btn-warning bg-gradient rounded-pill" [disabled]="shippingDetails.invalid">اضغط هنا للشراء</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<p-toast ></p-toast>

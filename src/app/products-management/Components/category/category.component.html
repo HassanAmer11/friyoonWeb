@@ -1,0 +1,120 @@
+<section class="category-page governorates-page py-5">
+  <div class="container">
+    <div class="title d-flex justify-content-between pb-2 border-bottom mb-4">
+      <h2 class="fw-bold  mb-0">الفئات</h2>
+      <button class="btn btn-outline-warning px-4 text-dark ms-auto" [class]="isAdd? ' btn-warning':' btn-outline-warning'"
+        (click)="isAdd = !isAdd">
+        <span *ngIf="!isAdd">إضافة</span>
+        <span *ngIf="isAdd">إخفاء الإضافة</span>
+      </button>
+      <a routerLink="../products-management" class="btn btn-outline-secondary px-4 text-dark ms-2"> رجوع <i
+          class="fa-solid fa-arrow-left ms-1"></i></a>
+
+    </div>
+    <div class="add-item bg-light p-2 mb-3 rounded-2" *ngIf="isAdd">
+      <form class="form" (ngSubmit)="addCategory()" [formGroup]="formCategory">
+        <div class="container">
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="">
+                <label for="nameAr" class="form-label">الفئة </label>
+                <input type="text" class="form-control" formControlName="nameAr" id="nameAr" placeholder="الفئة">
+                <div class="text-danger" *ngIf="formCategory.get('nameAr')?.invalid && formCategory.get('nameAr')?.touched">
+                  <div *ngIf="formCategory.get('nameAr')?.getError('required')">هذا الحق اجبارى</div>
+                  <!-- <div *ngIf="formCategory.get('nameAr')?.getError('pattern')"> من فضلك التزم كتابه حروف عربية</div> -->
+                </div>
+              </div>
+              </div>
+              <!-- <div class="col-lg-3">
+            <div class="">
+              <label for="nameEn" class="form-label">الاسم الانجليزى</label>
+              <input type="text" class="form-control" id="nameEn" formControlName="nameEn" placeholder="الاسم الانجليزى">
+              <div class="text-danger"
+              *ngIf="formCategory.get('nameEn')?.invalid && formCategory.get('nameEn')?.touched">
+                <div *ngIf="formCategory.get('nameEn')?.getError('required')">هذا الحق اجبارى</div>
+                <div *ngIf="formCategory.get('nameEn')?.getError('pattern')"> من فضلك التزم كتابه حروف الانجليزى</div>
+              </div>
+            </div>
+          </div> -->
+            <div class="col-lg-3">
+              <div class="">
+                <label for="Fees" class="form-label d-block"> صورة الفئة</label>
+                <app-upload (fileSelected)="onFileSelected($event)" class="form-control form-control-sm"></app-upload>
+
+              </div>
+              </div>
+              <div class="col-lg-3">
+              <div class="">
+                <label for="Fees" class="form-label d-block"> الايقونة</label>
+                <app-upload (fileSelected)="onIconeSelected($event)" class="form-control form-control-sm"></app-upload>
+              </div>
+              </div>
+              </div>
+              <div class="row">
+                <div class="">
+                  <label for="descriptionAr" class="form-label">الوصف </label>
+                  <input type="text" class="form-control" formControlName="descriptionAr" id="descriptionAr">
+                  <div class="text-danger"
+                    *ngIf="formCategory.get('descriptionAr')?.invalid && formCategory.get('descriptionAr')?.touched">
+                    <div *ngIf="formCategory.get('descriptionAr')?.getError('required')">هذا الحق اجبارى</div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-3">
+              <div class="mb-2">&nbsp;</div>
+              <div class=" d-flex align-items-center">
+
+                <button class="btn btn-success  btn-sm px-4  d-inline-block" [disabled]="formCategory.invalid"
+                  *ngIf="!buttonEdit">إضافة</button>
+                <button class="btn btn-primary  btn-sm px-4  d-inline-block" *ngIf="buttonEdit">تعديل</button>
+              </div>
+            </div>
+            </div>
+            </div>
+            </form>
+            </div>
+    <div class="row g-3">
+
+
+      <div class="col-lg-3 col-md-6" *ngFor="let category of getCategory">
+        <div class="card">
+          <div class="image mb-3 " style="height: 200px;">
+
+            <img [src]="this.backendurl+category.imagePath" [alt]="category.nameAr" [title]="category.nameAr"
+              class="img-thumbnail  w-100 h-100 object-fit-contain">
+          </div>
+          <h5 class="text-center fw-bold text-dark mt-3">{{category.nameAr}}</h5>
+          <div class="button-action  ">
+            <button class="btn btn-outline-primary btn-sm" (click)="editCategory(category)"><i class="fa-solid fa-pencil"></i>
+            </button>
+            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              (click)="CategoryDelete(category.id)"> <i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<p-toast></p-toast>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"> حذف الفئة</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h5>
+          هل تريد حذف هذه الفئة ؟ </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">إغلاق</button>
+        <button type="button" class="btn btn-danger" (click)="deleteCategory()" data-bs-dismiss="modal">نعم</button>
+      </div>
+    </div>
+  </div>
+</div>

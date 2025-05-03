@@ -1,0 +1,26 @@
+<a [routerLink]="['/Product', product?.id]" >
+<div class="card overflow-hidden ">
+  <div class="offer" *ngIf="product?.isOffer">
+    <div class="">تخفيضات</div>
+  </div>
+  <div class="image">
+    <img
+    [src]=" product?.images?.[0]?.imagePath ?backImageUrl+ product?.images?.[0]?.imagePath : defauletImagepath"
+    [alt]="product?.nameAr"
+    [title]="product?.nameAr"
+    height="200"
+    style="min-height: 200px;"
+    class="w-100  object-fit-contain">
+    </div>
+  <div class="card-body">
+    <!-- <small class="text-secondary">{{product?.category!.name}}</small> -->
+    <h5 class="card-title fw-bold">{{product?.nameAr! | sliceText : 3}}</h5>
+    <div class="price mb-3">
+      <span class="h4"> {{ product?.price| number:'1.0-0'}} <sub> جنية  </sub>
+        <small *ngIf="product?.oldPrice "><del class="text-secondary ms-3">{{ product?.oldPrice | number:'1.0-0' }} <sub> جنية  </sub></del></small></span>
+    </div>
+    <a  class="btn btn-warning bg-gradient fw-bold w-100" >  إشترى الان</a>
+</div>
+</div>
+
+</a>

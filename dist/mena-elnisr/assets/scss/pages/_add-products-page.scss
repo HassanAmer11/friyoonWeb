@@ -1,0 +1,7 @@
+.add-products-page {
+  .image-product {
+    &:after {
+      display: none !important;
+    }
+  }
+}

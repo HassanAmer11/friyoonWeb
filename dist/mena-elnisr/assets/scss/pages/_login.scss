@@ -1,0 +1,49 @@
+.login-page {
+  background-color: white;
+  background: linear-gradient(90deg, rgba(#000,.85) 0%, rgba(#000,.85) 100%),url('../../images/5999842.jpg') no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  height: 100dvh;
+  display: grid;
+  place-items: center;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  .content-login {
+    background-color: rgba(#212529,.95);
+    border-radius: 20px;
+    color: #fff;
+    width: 600px;
+    padding:  40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,.2);
+    .image {
+      margin-bottom: 20px;
+      img {
+        width: 100%;
+        height: 100px;
+        object-fit: contain;
+      }
+    }
+    /* form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        outline: none;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    } */
+  }
+}

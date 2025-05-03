@@ -1,0 +1,26 @@
+<section class="login-page ">
+  <div class="content-login">
+    <div class="image">
+      <img src="../../../../assets/images/longXl-Logo.png" alt="">
+    </div>
+    <h3>تسجيل الدخول</h3>
+    <p class="mb-4">مرحبا بعودتك! الرجاء إدخال التفاصيل الخاصة بك</p>
+    <form (ngSubmit)="login()" [formGroup]="formLogin">
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">البريد الالكترونى</label>
+        <div class="input-group ">
+          <span class="input-group-text" id="basic-addon2"><i class="fa-regular fa-envelope"></i></span>
+          <input type="text" class="form-control" formControlName="username" placeholder="البريد الالكترونى" >
+        </div>
+      </div>
+      <div class="mb-4">
+        <label for="exampleFormControlInput1" class="form-label"> الرقم السرى</label>
+        <div class="input-group ">
+          <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-unlock-keyhole"></i></span>
+          <input type="password" suggested="current-password" formControlName="password" class="form-control"  placeholder="الرقم السرى" autocomplete="off">
+        </div>
+      </div>
+      <button class="btn btn-lg btn-success w-100">دخول</button>
+    </form>
+  </div>
+</section>

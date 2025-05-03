@@ -1,0 +1,40 @@
+<section class="products-page pb-5">
+  <div class="container">
+    <ng-container *ngIf="productsItems?.length !==  0; else elseTemplate">
+      <div class="row g-3  row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 mb-4" >
+        <div class="col" *ngFor="let productItem of productsItems">
+          <app-product-item [product]="productItem"></app-product-item>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <div class="container text-center">
+        <img src="../../../assets/images/no-product-found.png" alt="">
+        <h4>عذراً، لا يوجد منتجات في هذه الصفحة بعد.
+        </h4>
+        <p class="text-secondary">ترقبوا قريبا مجموعة جديدة من المنتجات هنا!
+        </p>
+      </div>
+    </ng-template>
+
+
+
+    <nav aria-label="Page navigation example " *ngIf="showPagination">
+      <ul class="pagination justify-content-center pt-5">
+        <li class="page-item" [class.disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">
+          <a class="page-link text-dark">السابق</a>
+        </li>
+        <li class="page-item" *ngFor="let page of paginationArray" [class.active]="page === currentPage" (click)="changePage(page)">
+          <a class="page-link text-dark">{{ page }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">
+          <a class="page-link text-dark">التالى</a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</section>
+
+
+
