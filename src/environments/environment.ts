@@ -1,6 +1,6 @@
 
 export const environment = {
     production: false,
-    apiBaseUrl: 'https://localhost:7156/api/',
+    apiBaseUrl: 'https://adversite.bsite.net/api/',
 };
 
