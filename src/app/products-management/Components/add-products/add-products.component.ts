@@ -38,12 +38,9 @@ export class AddProductsComponent implements OnInit {
 
   formProduct: FormGroup;
   imageP: any[] = [];
-  images: any[] = [];  // to store the selected images
-
-
+  images: any[] = [];  // Array to hold image files and their preview URLs
   categories!: ICategory[]
   governorates: IGovernorates[] = []
-
 
   constructor(private _categoryService: CategoryService, private _product: ProductService,private _governoratesService: GovernoratesService,
      private fb: FormBuilder , private messageService: MessageService , private _router: Router) {
