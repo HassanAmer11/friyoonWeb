@@ -20,16 +20,6 @@
 
                     </div>
                 </div>
-                <!-- <div class="col-lg-6">
-                    <div class="">
-                        <label for="nameEn" class="form-label">الاسم الانجليزى</label>
-                        <input type="text" class="form-control" id="nameEn" formControlName="nameEn"
-                            placeholder="الاسم الانجليزى">
-
-                    </div>
-
-                </div> -->
-
 
                 <div class="col-lg-6">
                     <div class="">
@@ -45,9 +35,9 @@
                 <div class="col-lg-6">
                     <div class="">
                         <label for="LocationIds" class="form-label"> المناطق</label>
-                        <p-multiSelect [options]="governorates" class="p-multiselect" optionValue="id" optionLabel="nameAr"
-                            class="p-multiselect-items" styleClass="w-100" formControlName="LocationIds" display="chip"
-                            [showClear]="true" placeholder="مناطق الخدمة" />
+                        <p-multiSelect [options]="governorates" optionValue="id" optionLabel="nameAr" styleClass="w-100"
+                            formControlName="LocationIds" display="chip" [showClear]="true"
+                            placeholder="مناطق الخدمة" />
                     </div>
                 </div>
                 <div class="col-lg-12" style="display: none;">
@@ -58,7 +48,7 @@
                             <input type="checkbox" formControlName="showHome" class="form-check-input" id="showHome">
                         </div>
                     </div>
-                    </div>
+                </div>
                 <div class="col-lg-12">
                     <div class="">
                         <label for="descAr" class="form-label"> تفاصيل الخدمة </label>
@@ -68,33 +58,16 @@
 
                     </div>
                 </div>
-                <!-- <div class="col-lg-12">
-                    <div class="">
-                        <label for="descEn" class="form-label">تفصيل الخدمة بالانجليزى</label>
-                        <textarea name="descEn" formControlName="descEn" class="form-control" id="descEn"
-                            rows="3"></textarea>
-
-
-                    </div>
-                </div> -->
                 <div class="col-lg-12">
                     <div class="">
                         <label for="detailAr" class="form-label">مميزات الخدمة </label>
-                        <textarea name="detailAr" formControlName="detailAr" class="form-control" id="detailAr" rows="3"></textarea>
+                        <textarea name="detailAr" formControlName="detailAr" class="form-control" id="detailAr"
+                            rows="3"></textarea>
 
                         <!-- <p-editor name="detailAr" formControlName="detailAr" id="detailAr" [dir]="'rtl'"
                                                                                                                             [style]="{ height: '320px', direction: 'rtl' }"></p-editor> -->
                     </div>
                 </div>
-                <!-- <div class="col-lg-12">
-                    <div class="">
-                        <label for="detailEn" class="form-label">مميزات الخدمة بالانجليزى</label>
-                        <textarea name="detailEn" formControlName="detailEn" class="form-control" id="detailEn"
-                            rows="3"></textarea>
-
-
-                    </div>
-                </div> -->
 
                 <div class="col-lg-12">
                     <div class="">
@@ -115,8 +88,10 @@
                                 <ng-template carouselSlide>
                                     <a class="text-center">
                                         <div class="image image-product">
-                                            <img [src]="this.backendurl+slide.imagePath" [alt]="slide.id" class="w-100 h-100 object-fit-contain">
-                                            <button class="delete-btn" type="button" (click)="deleteImage(slide.id); $event.stopPropagation();">
+                                            <img [src]="this.backendurl+slide.imagePath" [alt]="slide.id"
+                                                class="w-100 h-100 object-fit-contain">
+                                            <button class="delete-btn" type="button"
+                                                (click)="deleteImage(slide.id); $event.stopPropagation();">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </div>

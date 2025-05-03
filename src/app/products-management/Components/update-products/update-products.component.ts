@@ -27,7 +27,6 @@ export class UpdateProductsComponent implements OnInit {
   product!: IProduct;
   productId!: string;
   governorates: IGovernorates[] = []
-
   customOptions: OwlOptions = {
     rtl: true,
     loop: true,
@@ -58,7 +57,7 @@ export class UpdateProductsComponent implements OnInit {
       videoUrl: new FormControl(),
       showHome: new FormControl(false),
       files: new FormControl([]),  // initialize images control to hold file list
-      LocationIds: new FormControl<IGovernorates[] | null>([]),
+      LocationIds: new FormControl<number[] | null>([]),
     });
   }
 
@@ -69,7 +68,6 @@ export class UpdateProductsComponent implements OnInit {
       this.productId = params['id'];  // Get 'id' from the URL
       this.getProduct(params['id']);
     });
-
   }
   showGovernorates() {
     this._governoratesService.getGovernorates().subscribe({
@@ -102,7 +100,10 @@ export class UpdateProductsComponent implements OnInit {
     this._product.getProduct(id).subscribe({
       next: (response) => {
         this.product = response.data;
-        this.formProduct.patchValue(response.data)
+        this.formProduct.patchValue(response.data);
+        this.formProduct.patchValue({
+          LocationIds: response.data.locationIds // e.g., Rome and Paris
+        });
       },
       error: (err) => {
         console.log(err);
@@ -120,7 +121,9 @@ export class UpdateProductsComponent implements OnInit {
     formData.append('showHome', this.formProduct.value.showHome);
     formData.append('videoUrl', this.formProduct.value.videoUrl);
     formData.append('id', this.productId);
-    formData.append('LocationIds', this.formProduct.value.LocationIds);
+    this.formProduct.value.LocationIds.forEach((id: string | Blob) => {
+      formData.append('LocationIds', id);
+    });
     this.images.forEach(image => {
       formData.append('files', image.file, image.file.name);  // append each image to FormData
     });

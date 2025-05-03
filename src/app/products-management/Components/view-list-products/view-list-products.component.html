@@ -29,7 +29,6 @@
               <th>الاسم</th>
               <th>صورة</th>
               <th>الفئة</th>
-              <th>المنطقة</th>
               <th></th>
             </tr>
           </ng-template>
@@ -41,7 +40,6 @@
                   [alt]="product.title" width="100" />
                 </td>
               <td>{{product?.category!.nameAr}}</td>
-              <td>{{product.videoUrl}}</td>
               <td>
                 <button class="btn btn-sm btn-primary mx-2" [routerLink]="['../update-products', product.id]"><i
                     class="fa-regular fa-pen-to-square"></i></button>

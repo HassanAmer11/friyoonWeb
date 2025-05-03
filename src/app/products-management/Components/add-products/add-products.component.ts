@@ -52,7 +52,7 @@ export class AddProductsComponent implements OnInit {
       id: new FormControl(null),
       videoUrl: new FormControl(),
       showHome: new FormControl(false),
-      LocationIds: new FormControl<IGovernorates[] | null>([]),
+      LocationIds: new FormControl<number[] | null>([]),
       files: new FormControl([])  // initialize images control to hold file list
 
     });
@@ -100,9 +100,10 @@ export class AddProductsComponent implements OnInit {
     formData.append('categoryId', this.formProduct.value.categoryId);
     formData.append('showHome', this.formProduct.value.showHome);
     formData.append('videoUrl', this.formProduct.value.videoUrl);
-    formData.append('LocationIds', this.formProduct.value.LocationIds);
     formData.append('id', '0');
-
+    this.formProduct.value.LocationIds.forEach((id: string | Blob) => {
+      formData.append('LocationIds', id);
+    });
     this.images.forEach(image => {
       formData.append('files', image.file, image.file.name);  // append each image to FormData
     });
